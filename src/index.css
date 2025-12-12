@@ -2,46 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
-
-/* Kahan Fintech Design System */
+/* Kahan Fintech Design System - Orange & Blue Theme */
 
 @layer base {
   :root {
     /* Core backgrounds */
-    --background: 210 20% 98%;
-    --foreground: 220 30% 10%;
+    --background: 210 30% 98%;
+    --foreground: 215 35% 12%;
 
     /* Card surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 10%;
+    --card-foreground: 215 35% 12%;
 
     /* Popover/dropdown */
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 10%;
+    --popover-foreground: 215 35% 12%;
 
-    /* Primary - Deep slate/navy */
-    --primary: 220 25% 15%;
-    --primary-foreground: 210 20% 98%;
+    /* Primary - Deep Blue */
+    --primary: 215 80% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Soft gray */
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 25% 15%;
+    /* Secondary - Soft blue-gray */
+    --secondary: 210 25% 94%;
+    --secondary-foreground: 215 35% 15%;
 
     /* Muted - Subtle gray */
-    --muted: 220 14% 94%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 210 20% 92%;
+    --muted-foreground: 215 15% 45%;
 
-    /* Accent - Emerald (growth/money) */
-    --accent: 160 84% 39%;
+    /* Accent - Vibrant Orange */
+    --accent: 25 95% 53%;
     --accent-foreground: 0 0% 100%;
 
-    /* Success */
-    --success: 160 84% 39%;
+    /* Success - Teal */
+    --success: 170 75% 40%;
     --success-foreground: 0 0% 100%;
 
-    /* Warning - Amber */
-    --warning: 38 92% 50%;
+    /* Warning - Orange */
+    --warning: 35 95% 55%;
     --warning-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -49,105 +47,105 @@
     --destructive-foreground: 0 0% 100%;
 
     /* Borders & inputs */
-    --border: 220 14% 90%;
-    --input: 220 14% 90%;
-    --ring: 160 84% 39%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 215 80% 45%;
 
     /* Radius */
     --radius: 0.75rem;
 
-    /* Vault specific */
-    --vault: 160 84% 39%;
-    --vault-glow: 160 84% 50%;
+    /* Vault specific - Orange */
+    --vault: 25 95% 53%;
+    --vault-glow: 25 95% 60%;
     
     /* Portfolio colors */
-    --portfolio-conservative: 200 80% 50%;
-    --portfolio-balanced: 160 84% 39%;
-    --portfolio-growth: 280 70% 55%;
+    --portfolio-conservative: 215 80% 50%;
+    --portfolio-balanced: 25 95% 53%;
+    --portfolio-growth: 170 75% 40%;
 
     /* Gradients */
-    --gradient-vault: linear-gradient(135deg, hsl(160 84% 39%), hsl(170 80% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 25% 15%), hsl(220 30% 25%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 14% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(160 84% 39%), hsl(150 80% 45%));
+    --gradient-vault: linear-gradient(135deg, hsl(25 95% 53%), hsl(35 95% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 80% 40%), hsl(215 70% 55%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 25% 97%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(15 90% 50%));
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(220 30% 10% / 0.03);
-    --shadow-md: 0 4px 6px -1px hsl(220 30% 10% / 0.05), 0 2px 4px -2px hsl(220 30% 10% / 0.03);
-    --shadow-lg: 0 10px 15px -3px hsl(220 30% 10% / 0.08), 0 4px 6px -4px hsl(220 30% 10% / 0.03);
-    --shadow-xl: 0 20px 25px -5px hsl(220 30% 10% / 0.1), 0 8px 10px -6px hsl(220 30% 10% / 0.05);
-    --shadow-vault: 0 0 40px hsl(160 84% 39% / 0.2);
-    --shadow-card: 0 1px 3px hsl(220 30% 10% / 0.04), 0 1px 2px -1px hsl(220 30% 10% / 0.03);
+    --shadow-sm: 0 1px 2px 0 hsl(215 35% 12% / 0.03);
+    --shadow-md: 0 4px 6px -1px hsl(215 35% 12% / 0.05), 0 2px 4px -2px hsl(215 35% 12% / 0.03);
+    --shadow-lg: 0 10px 15px -3px hsl(215 35% 12% / 0.08), 0 4px 6px -4px hsl(215 35% 12% / 0.03);
+    --shadow-xl: 0 20px 25px -5px hsl(215 35% 12% / 0.1), 0 8px 10px -6px hsl(215 35% 12% / 0.05);
+    --shadow-vault: 0 0 40px hsl(25 95% 53% / 0.25);
+    --shadow-card: 0 1px 3px hsl(215 35% 12% / 0.04), 0 1px 2px -1px hsl(215 35% 12% / 0.03);
 
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 30% 10%;
-    --sidebar-primary: 220 25% 15%;
+    --sidebar-foreground: 215 35% 12%;
+    --sidebar-primary: 215 80% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 96%;
-    --sidebar-accent-foreground: 220 25% 15%;
-    --sidebar-border: 220 14% 92%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-accent: 210 25% 94%;
+    --sidebar-accent-foreground: 215 35% 15%;
+    --sidebar-border: 210 20% 90%;
+    --sidebar-ring: 215 80% 45%;
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 210 20% 98%;
+    --background: 215 35% 8%;
+    --foreground: 210 30% 98%;
 
-    --card: 220 25% 11%;
-    --card-foreground: 210 20% 98%;
+    --card: 215 30% 12%;
+    --card-foreground: 210 30% 98%;
 
-    --popover: 220 25% 11%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 215 30% 12%;
+    --popover-foreground: 210 30% 98%;
 
-    --primary: 210 20% 98%;
-    --primary-foreground: 220 25% 10%;
+    --primary: 215 75% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 16%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 210 30% 98%;
 
-    --muted: 220 20% 16%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 210 15% 60%;
 
-    --accent: 160 84% 45%;
+    --accent: 25 95% 55%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 160 84% 45%;
+    --success: 170 75% 45%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 55%;
+    --warning: 35 95% 58%;
     --warning-foreground: 0 0% 0%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 160 84% 45%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 215 75% 55%;
 
-    --vault: 160 84% 45%;
-    --vault-glow: 160 84% 55%;
+    --vault: 25 95% 55%;
+    --vault-glow: 25 95% 65%;
 
-    --gradient-vault: linear-gradient(135deg, hsl(160 84% 45%), hsl(170 80% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(220 25% 12%), hsl(220 30% 18%));
-    --gradient-card: linear-gradient(180deg, hsl(220 25% 12%), hsl(220 25% 10%));
-    --gradient-accent: linear-gradient(135deg, hsl(160 84% 45%), hsl(150 80% 50%));
+    --gradient-vault: linear-gradient(135deg, hsl(25 95% 55%), hsl(35 95% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 35% 12%), hsl(215 30% 20%));
+    --gradient-card: linear-gradient(180deg, hsl(215 30% 14%), hsl(215 30% 10%));
+    --gradient-accent: linear-gradient(135deg, hsl(25 95% 55%), hsl(15 90% 52%));
 
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.2);
     --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.3), 0 2px 4px -2px hsl(0 0% 0% / 0.2);
     --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.4), 0 4px 6px -4px hsl(0 0% 0% / 0.2);
     --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.5), 0 8px 10px -6px hsl(0 0% 0% / 0.3);
-    --shadow-vault: 0 0 60px hsl(160 84% 45% / 0.3);
+    --shadow-vault: 0 0 60px hsl(25 95% 55% / 0.35);
     --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.2);
 
-    --sidebar-background: 220 25% 10%;
-    --sidebar-foreground: 210 20% 98%;
-    --sidebar-primary: 160 84% 45%;
+    --sidebar-background: 215 35% 10%;
+    --sidebar-foreground: 210 30% 98%;
+    --sidebar-primary: 25 95% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 14%;
-    --sidebar-accent-foreground: 210 20% 98%;
-    --sidebar-border: 220 20% 16%;
-    --sidebar-ring: 160 84% 45%;
+    --sidebar-accent: 215 25% 16%;
+    --sidebar-accent-foreground: 210 30% 98%;
+    --sidebar-border: 215 25% 18%;
+    --sidebar-ring: 25 95% 55%;
   }
 }
 
