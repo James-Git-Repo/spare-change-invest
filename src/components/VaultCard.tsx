@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { CurrencyDisplay } from '@/components/CurrencyDisplay';
-import { ArrowUpRight, Wallet, TrendingUp, Calendar } from 'lucide-react';
+import { ArrowUpRight, Wallet, TrendingUp, Calendar, ArrowDownToLine, Landmark } from 'lucide-react';
 import { useVaultBalance } from '@/hooks/useVaultBalance';
 import { usePortfolioValue } from '@/hooks/usePositions';
 import { useSweepSettings } from '@/hooks/useSweepSettings';
+import { useBankAccounts } from '@/hooks/useBankConnections';
+import { WithdrawalModal } from '@/components/modals/WithdrawalModal';
 
 export function VaultCard() {
   const { data: vault, isLoading } = useVaultBalance();
