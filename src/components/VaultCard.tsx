@@ -10,9 +10,11 @@ import { useBankAccounts } from '@/hooks/useBankConnections';
 import { WithdrawalModal } from '@/components/modals/WithdrawalModal';
 
 export function VaultCard() {
+  const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const { data: vault, isLoading } = useVaultBalance();
   const { totalValue, returnPercentage } = usePortfolioValue();
   const { data: settings } = useSweepSettings();
+  const { data: bankAccounts } = useBankAccounts();
 
   // Calculate next sweep date
   const getNextSweepDate = () => {
@@ -109,7 +111,30 @@ export function VaultCard() {
             )}
           </div>
         </div>
+
+        {/* Action buttons */}
+        <div className="flex gap-3 mt-6 pt-4 border-t border-border/50">
+          <Button 
+            variant="outline" 
+            className="flex-1 gap-2"
+            disabled={!bankAccounts?.length || (vault?.balance || 0) <= 0}
+            onClick={() => setWithdrawalOpen(true)}
+          >
+            <ArrowDownToLine className="w-4 h-4" />
+            Withdraw
+          </Button>
+          <Button 
+            variant="default" 
+            className="flex-1 gap-2 bg-vault hover:bg-vault/90"
+            disabled={(vault?.balance || 0) <= 0}
+          >
+            <Landmark className="w-4 h-4" />
+            Invest
+          </Button>
+        </div>
       </CardContent>
+
+      <WithdrawalModal open={withdrawalOpen} onOpenChange={setWithdrawalOpen} />
     </Card>
   );
 }
