@@ -87,37 +87,46 @@ export type Database = {
       }
       bank_connections: {
         Row: {
+          access_token_ref: string | null
           consent_expires_at: string | null
           created_at: string | null
+          external_connection_id: string | null
           id: string
           institution_logo: string | null
           institution_name: string
           last_sync_at: string | null
           provider: string
+          refresh_token_expires_at: string | null
           status: Database["public"]["Enums"]["connection_status"] | null
           updated_at: string | null
           user_id: string
         }
         Insert: {
+          access_token_ref?: string | null
           consent_expires_at?: string | null
           created_at?: string | null
+          external_connection_id?: string | null
           id?: string
           institution_logo?: string | null
           institution_name: string
           last_sync_at?: string | null
           provider: string
+          refresh_token_expires_at?: string | null
           status?: Database["public"]["Enums"]["connection_status"] | null
           updated_at?: string | null
           user_id: string
         }
         Update: {
+          access_token_ref?: string | null
           consent_expires_at?: string | null
           created_at?: string | null
+          external_connection_id?: string | null
           id?: string
           institution_logo?: string | null
           institution_name?: string
           last_sync_at?: string | null
           provider?: string
+          refresh_token_expires_at?: string | null
           status?: Database["public"]["Enums"]["connection_status"] | null
           updated_at?: string | null
           user_id?: string
@@ -131,8 +140,10 @@ export type Database = {
           cash_balance: number | null
           created_at: string | null
           currency: string | null
+          external_account_id: string | null
           id: string
           kyc_status: string | null
+          kyc_submission_id: string | null
           updated_at: string | null
           user_id: string
         }
@@ -142,8 +153,10 @@ export type Database = {
           cash_balance?: number | null
           created_at?: string | null
           currency?: string | null
+          external_account_id?: string | null
           id?: string
           kyc_status?: string | null
+          kyc_submission_id?: string | null
           updated_at?: string | null
           user_id: string
         }
@@ -153,12 +166,61 @@ export type Database = {
           cash_balance?: number | null
           created_at?: string | null
           currency?: string | null
+          external_account_id?: string | null
           id?: string
           kyc_status?: string | null
+          kyc_submission_id?: string | null
           updated_at?: string | null
           user_id?: string
         }
         Relationships: []
+      }
+      broker_funding: {
+        Row: {
+          amount: number
+          broker_account_id: string | null
+          completed_at: string | null
+          created_at: string | null
+          currency: string | null
+          external_transfer_id: string | null
+          id: string
+          initiated_at: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          broker_account_id?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          external_transfer_id?: string | null
+          id?: string
+          initiated_at?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          broker_account_id?: string | null
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          external_transfer_id?: string | null
+          id?: string
+          initiated_at?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "broker_funding_broker_account_id_fkey"
+            columns: ["broker_account_id"]
+            isOneToOne: false
+            referencedRelation: "broker_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       excluded_merchants: {
         Row: {
@@ -312,6 +374,7 @@ export type Database = {
           is_reversal: boolean | null
           transaction_id: string | null
           user_id: string
+          withdrawal_id: string | null
         }
         Insert: {
           amount: number
@@ -321,6 +384,7 @@ export type Database = {
           is_reversal?: boolean | null
           transaction_id?: string | null
           user_id: string
+          withdrawal_id?: string | null
         }
         Update: {
           amount?: number
@@ -330,6 +394,7 @@ export type Database = {
           is_reversal?: boolean | null
           transaction_id?: string | null
           user_id?: string
+          withdrawal_id?: string | null
         }
         Relationships: [
           {
@@ -337,6 +402,13 @@ export type Database = {
             columns: ["transaction_id"]
             isOneToOne: false
             referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "roundup_ledger_withdrawal_id_fkey"
+            columns: ["withdrawal_id"]
+            isOneToOne: false
+            referencedRelation: "withdrawals"
             referencedColumns: ["id"]
           },
         ]
@@ -386,6 +458,7 @@ export type Database = {
           monthly_cap: number | null
           risk_profile: Database["public"]["Enums"]["risk_profile"] | null
           sweep_day: number | null
+          sweep_preference: string | null
           updated_at: string | null
           user_id: string
         }
@@ -397,6 +470,7 @@ export type Database = {
           monthly_cap?: number | null
           risk_profile?: Database["public"]["Enums"]["risk_profile"] | null
           sweep_day?: number | null
+          sweep_preference?: string | null
           updated_at?: string | null
           user_id: string
         }
@@ -408,6 +482,7 @@ export type Database = {
           monthly_cap?: number | null
           risk_profile?: Database["public"]["Enums"]["risk_profile"] | null
           sweep_day?: number | null
+          sweep_preference?: string | null
           updated_at?: string | null
           user_id?: string
         }
@@ -460,6 +535,59 @@ export type Database = {
           {
             foreignKeyName: "transactions_account_id_fkey"
             columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "bank_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      withdrawals: {
+        Row: {
+          amount: number
+          completed_at: string | null
+          created_at: string | null
+          currency: string | null
+          destination_account_id: string | null
+          error_message: string | null
+          external_payment_id: string | null
+          id: string
+          initiated_at: string | null
+          reference_number: string | null
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          destination_account_id?: string | null
+          error_message?: string | null
+          external_payment_id?: string | null
+          id?: string
+          initiated_at?: string | null
+          reference_number?: string | null
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          destination_account_id?: string | null
+          error_message?: string | null
+          external_payment_id?: string | null
+          id?: string
+          initiated_at?: string | null
+          reference_number?: string | null
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "withdrawals_destination_account_id_fkey"
+            columns: ["destination_account_id"]
             isOneToOne: false
             referencedRelation: "bank_accounts"
             referencedColumns: ["id"]
