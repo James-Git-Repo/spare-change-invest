@@ -1,1 +1,22 @@
 project_id = "noftsqypdgazndwziqwl"
+
+[functions.open-banking-init]
+verify_jwt = false
+
+[functions.open-banking-callback]
+verify_jwt = false
+
+[functions.open-banking-sync]
+verify_jwt = false
+
+[functions.broker-create-account]
+verify_jwt = false
+
+[functions.broker-place-order]
+verify_jwt = false
+
+[functions.broker-sync-positions]
+verify_jwt = false
+
+[functions.withdrawal-initiate]
+verify_jwt = false

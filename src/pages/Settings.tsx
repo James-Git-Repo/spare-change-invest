@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { useAuth } from '@/contexts/AuthContext';
-import { useProfile, useUpdateProfile } from '@/hooks/useProfile';
+import { useProfile } from '@/hooks/useProfile';
 import { useSweepSettings, useUpdateSweepSettings } from '@/hooks/useSweepSettings';
 import { CurrencyDisplay } from '@/components/CurrencyDisplay';
 import { REGIONS, RISK_PROFILES, APP_CONFIG } from '@/lib/constants';
+import { BankConnectionModal } from '@/components/modals/BankConnectionModal';
+import { BrokerAccountModal } from '@/components/modals/BrokerAccountModal';
 import { 
   User, 
   CreditCard, 
@@ -30,8 +31,10 @@ export default function Settings() {
   const { user, signOut } = useAuth();
   const { data: profile } = useProfile();
   const { data: settings } = useSweepSettings();
-  const updateProfile = useUpdateProfile();
   const updateSettings = useUpdateSweepSettings();
+
+  const [bankModalOpen, setBankModalOpen] = useState(false);
+  const [brokerModalOpen, setBrokerModalOpen] = useState(false);
 
   const [localSettings, setLocalSettings] = useState({
     is_active: settings?.is_active ?? true,
@@ -237,14 +240,14 @@ export default function Settings() {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button variant="outline" className="w-full justify-between" size="lg">
+            <Button variant="outline" className="w-full justify-between" size="lg" onClick={() => setBankModalOpen(true)}>
               <span className="flex items-center gap-2">
                 <CreditCard className="w-5 h-5" />
                 Bank Accounts
               </span>
               <ChevronRight className="w-5 h-5" />
             </Button>
-            <Button variant="outline" className="w-full justify-between" size="lg">
+            <Button variant="outline" className="w-full justify-between" size="lg" onClick={() => setBrokerModalOpen(true)}>
               <span className="flex items-center gap-2">
                 <TrendingUp className="w-5 h-5" />
                 Broker Account
@@ -288,6 +291,9 @@ export default function Settings() {
         <p className="text-xs text-muted-foreground text-center">
           Kahan v1.0.0 • Made with care in Europe
         </p>
+
+        <BankConnectionModal open={bankModalOpen} onOpenChange={setBankModalOpen} />
+        <BrokerAccountModal open={brokerModalOpen} onOpenChange={setBrokerModalOpen} />
       </main>
     </div>
   );
